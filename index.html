@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox Game Stats</title>
+    <title>PSGO Stats</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -54,7 +54,15 @@
         }
 
         .number-animation {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: color 0.3s ease;
+        }
+
+        .number-transition.increase {
+            color: #4ade80;
+        }
+
+        .number-transition.decrease {
+            color: #f87171;
         }
 
         .fade-in {
@@ -174,7 +182,15 @@
             document.getElementById('gameIcon').src = iconData.imageUrl;
 
             const playerCountElement = document.getElementById('playerCount');
+            playerCountElement.classList.remove('increase', 'decrease');
+
             animateValue(playerCountElement, currentPlayers, gameData.playing, 1000);
+
+            if (currentPlayers !== gameData.playing ) {
+                element.classList.add(currentPlayers > gameData.playing ? 'increase' : 'decrease');
+                setTimeout(() => playerCountElement.classList.remove('increase', 'decrease'), 1000)
+            }
+
             currentPlayers = gameData.playing;
 
             const upvotesElement = document.getElementById('upvotes');
@@ -188,9 +204,6 @@
             
             likeRatioElement.style.width = `${ratio}%`;
             likePercentageElement.textContent = `${ratio}% positive`;
-
-            playerCountElement.classList.add('pulse');
-            setTimeout(() => playerCountElement.classList.remove('pulse'), 1000);
         }
 
         fetchData();
