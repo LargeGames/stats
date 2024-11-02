@@ -135,13 +135,13 @@
 
         async function fetchData() {
             try {
-                const gameResponse = await fetch('https://games.roblox.com/v1/games?universeIds=6740465414');
+                const gameResponse = await fetch('/api/games?universeIds=6740465414');
                 const gameData = await gameResponse.json();
                 
-                const votesResponse = await fetch('https://games.roblox.com/v1/games/votes?universeIds=6740465414');
+                const votesResponse = await fetch('api/votes?universeIds=6740465414');
                 const votesData = await votesResponse.json();
                 
-                const iconResponse = await fetch('https://thumbnails.roblox.com/v1/games/icons?universeIds=6740465414&returnPolicy=PlaceHolder&size=256x256&format=Png&isCircular=false');
+                const iconResponse = await fetch('api/icon?universeIds=6740465414&returnPolicy=PlaceHolder&size=256x256&format=Png&isCircular=false');
                 const iconData = await iconResponse.json();
 
                 updateUI(gameData.data[0], votesData.data[0], iconData.data[0]);
