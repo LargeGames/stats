@@ -57,11 +57,11 @@
             transition: color 0.3s ease;
         }
 
-        .number-transition.increase {
+        .increase {
             color: #4ade80;
         }
 
-        .number-transition.decrease {
+        .decrease {
             color: #f87171;
         }
 
@@ -187,7 +187,7 @@
             animateValue(playerCountElement, currentPlayers, gameData.playing, 1000);
 
             if (currentPlayers !== gameData.playing ) {
-                playerCountElement.classList.add(currentPlayers > gameData.playing ? 'increase' : 'decrease');
+                playerCountElement.classList.add(currentPlayers > gameData.playing ? 'decrease' : 'increase');
                 setTimeout(() => playerCountElement.classList.remove('increase', 'decrease'), 1000)
             }
 
