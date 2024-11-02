@@ -26,6 +26,12 @@ function setCachedData(key, value) {
   });
 }
 
+app.get('/', async (req, res) => {
+  res.sendFile("index.html", {
+    root: __dirname
+  })
+});
+
 app.get('/api/games', async (req, res) => {
   try {
     const universeId = req.query.universeId;
